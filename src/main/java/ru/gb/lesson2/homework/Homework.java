@@ -1,7 +1,10 @@
 package ru.gb.lesson2.homework;
 
-import ru.gb.lesson2.*;
-import ru.gb.lesson2.rand.*;
+
+
+import java.text.*;
+import java.time.*;
+import java.util.*;
 
 public class Homework {
 
@@ -15,16 +18,40 @@ public class Homework {
    *  Реализовать класс RandomDateProcessor по аналогии с RandomIntegerProcessor, который обрабатывает аннотацию.
    */
 
-  public static void main(String[] args) {
-    MyClass myClass = new MyClass();
-    RandomDateProcessor.processRandomDate(myClass);
-
-    System.out.println(myClass.date);
+  public static void main(String[] args) throws IllegalAccessException {
+      MyClass myClass = new MyClass();
+      RandomDateProcessor.processAnnotations(myClass);
   }
 
-  public static class MyClass {
-      @RandomDate(min = 1704056400L, max = 1735592400L)
-      long date;
-  }
+    public static class MyClass {
+        @ru.gb.lesson2.homework.RandomDate(min = 1704056400L, max = 1735592400L)
+        long date;
+    }
+
+    @RandomDate(min = 1704056400L, max = 1735592400L)
+    private Date randomDateField;
+
+    @RandomDate
+    private LocalDateTime randomLocalDateTime;
+
+    @RandomDate()
+    private Instant randomInstant;
+
+    public String getRandomInstant() {
+        Date instantFormat = Date.from(randomInstant.atZone(ZoneId.systemDefault()).toInstant());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(("dd-MM-yyyy"));
+        return dateFormat.format(instantFormat);
+    }
+
+    @RandomDate
+    private LocalDate randomLocalDate;
+    public String getRandomLocalDate() {
+        Date dateFormat = Date.from(randomLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return simpleDateFormat.format(dateFormat);
+    }
+
+
+
 
 }

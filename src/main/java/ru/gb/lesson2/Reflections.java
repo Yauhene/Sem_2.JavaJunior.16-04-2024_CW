@@ -26,18 +26,10 @@ public class Reflections {
     }
     System.out.println("==== Конец распечатки declaredConstructors =============");
 
-//    System.out.println(Arrays.toString(Reflections.class.getNestMembers()));
-
-//    System.out.println(Person.class.getDeclaredConstructors().length);
-//    System.out.println(Person.class.getConstructors().length);
-//    System.out.println();
-//    System.out.println(ExtPerson.class.getDeclaredConstructors().length);
-//    System.out.println(ExtPerson.class.getConstructors().length);
-
-      System.out.println("\n--------- Изменение значения поля --------");
+    System.out.println("\n--------- Изменение значения поля --------");
     System.out.println("Изначально person: " + person);
     person.setName("Updated");
-      System.out.println("После person.setName: " + person);
+    System.out.println("После person.setName: " + person);
     Method setName = Person.class.getMethod("setName", String.class);
     setName.invoke(person, "Updated #2");
     System.out.println("После setName.invoke(person, \"Updated #2\") person: " + person);
@@ -60,7 +52,8 @@ public class Reflections {
     System.out.println(ExtPerson.class.getMethods().length);
 
     Method method = PrivateMethodHolder.class.getDeclaredMethod("method");
-    method.setAccessible(true);
+    method.setAccessible(true); // получаем доступ к использованию приватного метода method,
+                                // трюк работает для всех классов, которые находятся с нами в одном модуле
     method.invoke(new PrivateMethodHolder());
 
     Field name = Person.class.getDeclaredField("name");

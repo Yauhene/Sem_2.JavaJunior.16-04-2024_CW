@@ -1,5 +1,8 @@
 package ru.gb.lesson2.homework;
 
+import ru.gb.lesson2.*;
+import ru.gb.lesson2.rand.*;
+
 public class Homework {
 
   /**
@@ -12,14 +15,16 @@ public class Homework {
    *  Реализовать класс RandomDateProcessor по аналогии с RandomIntegerProcessor, который обрабатывает аннотацию.
    */
 
-  // TODO
-  private static @interface RandomDate {
+  public static void main(String[] args) {
+    MyClass myClass = new MyClass();
+    RandomDateProcessor.processRandomDate(myClass);
 
-    // UNIX timestamp - количество милисекунд, прошедших с 1 января 1970 года по UTC-0
-    long min() default 1704056400L; // 1 января 2024 UTC-3
+    System.out.println(myClass.date);
+  }
 
-    long max() default 1735592400L;
-
+  public static class MyClass {
+      @RandomDate(min = 1704056400L, max = 1735592400L)
+      long date;
   }
 
 }

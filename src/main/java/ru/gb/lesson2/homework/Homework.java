@@ -24,7 +24,7 @@ public class Homework {
   }
 
     public static class MyClass {
-        @ru.gb.lesson2.homework.RandomDate(min = 1704056400L, max = 1735592400L)
+        @RandomDate(min = 1704056400L, max = 1735592400L)
         long date;
     }
 
@@ -44,8 +44,8 @@ public class Homework {
     }
 
     @RandomDate
-    private LocalDate randomLocalDate;
-    public String getRandomLocalDate() {
+    private static LocalDate randomLocalDate;
+    public static String getRandomLocalDate() {
         Date dateFormat = Date.from(randomLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return simpleDateFormat.format(dateFormat);

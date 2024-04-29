@@ -22,12 +22,16 @@ public class RandomDateProcessor {
                 try {
                     if (declaredField.getType() == Date.class) {
                         System.out.println("Зашли в ветку (field.getType() == Date.class)");
-                        declaredField.set(obj, new Date(ThreadLocalRandom.current().nextLong(min, max)));
+                        Date date = new Date(ThreadLocalRandom.current().nextLong(min, max));
+                        declaredField.set(obj, date);
+                        System.out.println(date);
+//                        declaredField.set(obj, new Date(ThreadLocalRandom.current().nextLong(min, max)));
                     } else if (declaredField.getType() == LocalDateTime.class) {
                         System.out.println("Зашли в ветку (field.getType() == LocalDateTime.class)");
                         declaredField.set(obj,
                                 LocalDateTime.ofEpochSecond(ThreadLocalRandom.current().
                                         nextLong(min, max) / 1000, 0, ZoneOffset.ofHours(-3)));
+                        System.out.println(Homework.getRandomLocalDate());
                     } else if (declaredField.getType() == LocalDate.class) {
                         System.out.println("Зашли в ветку (field.getType() == LocalDate.class)");
                         declaredField.set(obj,

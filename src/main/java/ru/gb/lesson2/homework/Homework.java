@@ -24,6 +24,10 @@ public class Homework {
   }
 
     public static class MyClass {
+        public long getDate() {
+            return date;
+        }
+
         @RandomDate(min = 1704056400L, max = 1735592400L)
         long date;
     }

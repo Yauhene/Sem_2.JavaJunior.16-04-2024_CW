@@ -23,7 +23,6 @@ public class RandomDateProcessor {
                         Date date = new Date(ThreadLocalRandom.current().nextLong(min, max));
                         declaredField.set(obj, date);
                         System.out.println(date);
-                        declaredField.set(obj, new Date(ThreadLocalRandom.current().nextLong(min, max)));
                     } else if (declaredField.getType() == LocalDateTime.class) {
                         declaredField.set(obj,
                                 LocalDateTime.ofEpochSecond(ThreadLocalRandom.current().

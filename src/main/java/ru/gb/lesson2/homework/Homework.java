@@ -5,6 +5,7 @@ package ru.gb.lesson2.homework;
 import java.text.*;
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.*;
 
 public class Homework {
 
@@ -24,12 +25,12 @@ public class Homework {
   }
 
     public static class MyClass {
-        public long getDate() {
-            return date;
+        public Date getRandomDate() {
+            return new Date(ThreadLocalRandom.current().nextLong());
         }
 
         @RandomDate(min = 1704056400L, max = 1735592400L)
-        long date;
+        Date date;
     }
 
     @RandomDate(min = 1704056400L, max = 1735592400L)

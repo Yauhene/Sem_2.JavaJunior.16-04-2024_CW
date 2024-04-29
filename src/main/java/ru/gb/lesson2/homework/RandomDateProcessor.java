@@ -18,26 +18,21 @@ public class RandomDateProcessor {
                 long max = annotation.max();
 
                 declaredField.setAccessible(true);
-
                 try {
                     if (declaredField.getType() == Date.class) {
-                        System.out.println("Зашли в ветку (field.getType() == Date.class)");
                         Date date = new Date(ThreadLocalRandom.current().nextLong(min, max));
                         declaredField.set(obj, date);
                         System.out.println(date);
-//                        declaredField.set(obj, new Date(ThreadLocalRandom.current().nextLong(min, max)));
+                        declaredField.set(obj, new Date(ThreadLocalRandom.current().nextLong(min, max)));
                     } else if (declaredField.getType() == LocalDateTime.class) {
-                        System.out.println("Зашли в ветку (field.getType() == LocalDateTime.class)");
                         declaredField.set(obj,
                                 LocalDateTime.ofEpochSecond(ThreadLocalRandom.current().
                                         nextLong(min, max) / 1000, 0, ZoneOffset.ofHours(-3)));
                         System.out.println(Homework.getRandomLocalDate());
                     } else if (declaredField.getType() == LocalDate.class) {
-                        System.out.println("Зашли в ветку (field.getType() == LocalDate.class)");
                         declaredField.set(obj,
                                 LocalDate.ofEpochDay(ThreadLocalRandom.current().nextLong(min, max) / 86400000L));
                     } else if (declaredField.getType() == Instant.class) {
-                        System.out.println("Зашли в ветку (field.getType() == Instant.class)");
                         declaredField.set(obj, Instant.ofEpochSecond(ThreadLocalRandom.current().
                                 nextLong(min, max) / 1000));
                     }
